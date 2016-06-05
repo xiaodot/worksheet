@@ -18,9 +18,21 @@ function collect(){
 }
 
 function save(){
-
+  var data = collect();
+  console.log(data);
+  $.ajax({
+    url: "/",
+    type: "POST",
+    data: data,
+    success: function(res){
+      console.log(res);
+      console.log(JSON.parse(res));
+    }
+  });
 }
 
 $(function(){
+  $("button").bind("click", save);
+
   $("#test").load("demo.txt");
 })

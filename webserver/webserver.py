@@ -363,10 +363,15 @@ def make_request_handler_class(opts):
             logging.debug('TYPE %s' % (ctype))
             logging.debug('PATH %s' % (self.path))
             logging.debug('ARGS %d' % (len(postvars)))
+            item = ""
             if len(postvars):
                 i = 0
+                print postvars
                 for key in sorted(postvars):
-                    logging.debug('ARG[%d] %s=%s' % (i, key, postvars[key]))
+                    logging.debug('ARG[%d] %s=%s' % (i, key, postvars[key][0]))
+                    item += "\"" + key + "\":" + "\"" + postvars[key][0] + "\""
+                    if(i < len(postvars)-1):
+                        item += ", "
                     i += 1
 
             # Tell the browser everything is okay and that there is
@@ -375,7 +380,18 @@ def make_request_handler_class(opts):
             self.send_header('Content-type', 'text/html')
             self.end_headers()
 
+            file=open("dataset", "a+")
+            file.write("{ " + item + " }\n")
+
             # Display the POST variables.
+            file.seek(0)
+            res = "{\"data\": ["
+            lines = file.readlines()
+            res += ",".join(lines)
+            res += "]}"
+            file.close()
+            self.wfile.write(res)
+            '''
             self.wfile.write('<html>')
             self.wfile.write('  <head>')
             self.wfile.write('    <title>Server POST Response</title>')
@@ -390,7 +406,7 @@ def make_request_handler_class(opts):
                 i = 0
                 for key in sorted(postvars):
                     i += 1
-                    val = postvars[key]
+                    val = postvars[key][0]
                     self.wfile.write('        <tr>')
                     self.wfile.write('          <td align="right">%d</td>' % (i))
                     self.wfile.write('          <td align="right">%s</td>' % key)
@@ -402,6 +418,7 @@ def make_request_handler_class(opts):
             self.wfile.write('    <p><a href="%s">Back</a></p>' % (back))
             self.wfile.write('  </body>')
             self.wfile.write('</html>')
+            '''
 
     return MyRequestHandler
 
