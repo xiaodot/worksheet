@@ -214,6 +214,19 @@ def make_request_handler_class(opts):
                 self.send_header('Content-type', 'text/html')
                 self.end_headers()
                 self.info()
+            elif self.path == '/sheets':
+                self.send_response(200)  # OK
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+
+                file=open("dataset", "r+")
+                file.seek(0)
+                res = "{\"data\": ["
+                lines = file.readlines()
+                res += ",".join(lines)
+                res += "]}"
+                file.close()
+                self.wfile.write(res)
             else:
                 # Get the file path.
                 path = MyRequestHandler.m_opts.rootdir + rpath

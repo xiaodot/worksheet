@@ -1,8 +1,11 @@
-body{
+.worksheet{
   width: 100%;
   font-size: 1.1em;
   margin: auto;
   max-width: 900px;
+}
+.sum{
+  margin: auto;
 }
 table{
   width: 100%;
@@ -46,7 +49,7 @@ textarea{
 .title td, .no-border td{
   border: none;
 }
-.save{
+button{
   background-color: grey;
   color: white;
   font-weight: bold;
@@ -54,10 +57,20 @@ textarea{
   padding: 8px 10px;
   box-shadow: none;
   border: none;
-  width: 60px;
-  margin-left: 840px;
   cursor: pointer;
+  margin: 10px 0;
+  width: 100px;
 }
-.save:hover{
+.save{
+  margin-left: 695px;
+}
+button:hover{
   opacity: 0.8;
+}
+.sum{
+  font-size: 0.8em;
+}
+.sum th, .sum td{ 
+  border: 1px solid;
+  border-right: 1px solid black;
 }
