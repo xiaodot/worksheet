@@ -2,7 +2,7 @@
 #
 # Stop the webserver.
 #
-WsBase=../logs/webserver-$(hostname)-8080
+WsBase=../logs/webserver-$(hostname)-9000
 PidFile=$WsBase.pid
 if [ -f $PidFile ] ; then
     Pid=$(cat $PidFile)
