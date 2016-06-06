@@ -14,5 +14,5 @@ if [ -f $PidFile ] ; then
 	rm -f $PidFile
     fi
 fi
-./webserver.py -H $(hostname) -p 9000 -l debug --no-dirlist -r ../app -d ../log
+./webserver.py -H cpdaxue.com -p 9000 -l debug --no-dirlist -r ../app -d ../log
 echo "started"
