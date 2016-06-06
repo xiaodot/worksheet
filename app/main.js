@@ -8,7 +8,7 @@ function get_date(){
   res += d.getFullYear()
   month = d.getMonth() + 1;
   day = d.getDate();
-  res += month < 10 ? "0" + month : month;  
+  res += month < 10 ? "0" + month : month;
   res += day < 10 ? "0" + day : day;
   return res;
 }
@@ -81,6 +81,9 @@ function sum_display(){
 }
 
 function save(){
+  if(!confirm("确定要提交吗？")){
+    return;
+  }
   var data = collect();
   $.ajax({
     url: "/",
