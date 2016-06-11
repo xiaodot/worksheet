@@ -2,7 +2,7 @@ import sys
 import json
 import os
 
-filename = "stage"
+filename = "dataset"
 
 def readall():
 	fd = open(filename)
@@ -48,4 +48,3 @@ def remove(id):
 			data.remove(item)
 	write(json.dumps(data))
 	
-print json.dumps(find("01"))
